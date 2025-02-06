@@ -1,9 +1,9 @@
 package com.dev.Zerphyis.Adopet.services;
 
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosTutores;
+import com.dev.Zerphyis.Adopet.entidades.tutores.DadosTutores;
 
-import com.dev.Zerphyis.Adopet.entidades.tutores.RepositoryTutores;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryTutores;
 import com.dev.Zerphyis.Adopet.entidades.tutores.Tutores;
 import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;

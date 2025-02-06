@@ -1,28 +1,35 @@
-package com.dev.Zerphyis.Adopet.entidades.cartelaAdocao;
+package com.dev.Zerphyis.Adopet.entidades.abrigo;
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAdocao;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_Adocao")
-public class Adocao {
+public class Abrigo {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID
-    )
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String telefone;
+    @FutureOrPresent
     private LocalDateTime dataAdocao;
+    @NotEmpty
     private UUID idPet;
+    @NotNull
     private Long idTutor;
 
-public Adocao(){
+public Abrigo(){
 
 }
-public Adocao(DadosAdocao dados){
+public Abrigo(DadosAbrigo dados){
     this.nome= dados.nome();
     this.telefone= dados.telefone();
     this.dataAdocao=LocalDateTime.now();

@@ -1,5 +1,6 @@
-package com.dev.Zerphyis.Adopet.entidades.pets;
+package com.dev.Zerphyis.Adopet.entidades.repository;
 
+import com.dev.Zerphyis.Adopet.entidades.pets.Animais;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

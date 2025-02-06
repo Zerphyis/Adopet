@@ -1,4 +1,4 @@
-package com.dev.Zerphyis.Adopet.entidades.dtos;
+package com.dev.Zerphyis.Adopet.entidades.pets;
 
 import com.dev.Zerphyis.Adopet.entidades.pets.enums.Adocao;
 import com.dev.Zerphyis.Adopet.entidades.pets.enums.Especie;

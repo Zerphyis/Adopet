@@ -1,10 +1,11 @@
 package com.dev.Zerphyis.Adopet.entidades.pets;
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAnimais;
 import com.dev.Zerphyis.Adopet.entidades.pets.enums.Adocao;
 import com.dev.Zerphyis.Adopet.entidades.pets.enums.Especie;
 import com.dev.Zerphyis.Adopet.entidades.pets.enums.Sexo;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
@@ -14,14 +15,21 @@ public class Animais {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @NotBlank
+
     private String nome;
+    @NotBlank
+
     private String idade;
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
     @Enumerated(EnumType.STRING)
     private Especie especie;
+    @NotBlank
     private String raca;
+    @NotBlank
     private  String cor;
+    @NotNull
     private  Double peso;
     @Enumerated(EnumType.STRING)
     private Adocao tipoadocao;

@@ -1,4 +1,4 @@
-package com.dev.Zerphyis.Adopet.entidades.dtos;
+package com.dev.Zerphyis.Adopet.entidades.tutores;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

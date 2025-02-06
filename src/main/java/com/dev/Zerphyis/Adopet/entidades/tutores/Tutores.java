@@ -1,7 +1,8 @@
 package com.dev.Zerphyis.Adopet.entidades.tutores;
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosTutores;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_tutor")
@@ -9,11 +10,15 @@ public class Tutores {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+@NotBlank
     private String nome;
+    @NotBlank
     private String telefone;
+    @NotBlank
     private String email;
+    @NotBlank
     private  String senha;
+    @NotNull
     private Integer idade;
 
     public Tutores(DadosTutores dados) {

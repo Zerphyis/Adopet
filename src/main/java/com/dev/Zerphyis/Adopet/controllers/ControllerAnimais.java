@@ -1,6 +1,6 @@
 package com.dev.Zerphyis.Adopet.controllers;
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAnimais;
+import com.dev.Zerphyis.Adopet.entidades.pets.DadosAnimais;
 import com.dev.Zerphyis.Adopet.entidades.pets.Animais;
 import com.dev.Zerphyis.Adopet.services.ServiceAnimais;
 import org.springframework.beans.factory.annotation.Autowired;

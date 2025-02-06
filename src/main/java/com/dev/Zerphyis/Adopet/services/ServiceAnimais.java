@@ -1,8 +1,8 @@
 package com.dev.Zerphyis.Adopet.services;
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAnimais;
+import com.dev.Zerphyis.Adopet.entidades.pets.DadosAnimais;
 import com.dev.Zerphyis.Adopet.entidades.pets.Animais;
-import com.dev.Zerphyis.Adopet.entidades.pets.RepositoryAnimal;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAnimal;
 import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

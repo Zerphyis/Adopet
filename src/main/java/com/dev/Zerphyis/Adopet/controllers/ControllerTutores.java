@@ -1,7 +1,7 @@
 package com.dev.Zerphyis.Adopet.controllers;
 
 
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosTutores;
+import com.dev.Zerphyis.Adopet.entidades.tutores.DadosTutores;
 import com.dev.Zerphyis.Adopet.entidades.tutores.Tutores;
 import com.dev.Zerphyis.Adopet.services.ServiceTutores;
 import org.springframework.beans.factory.annotation.Autowired;

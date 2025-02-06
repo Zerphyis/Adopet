@@ -1,33 +1,32 @@
 package com.dev.Zerphyis.Adopet.controllers;
 
-import com.dev.Zerphyis.Adopet.entidades.cartelaAdocao.Adocao;
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAdocao;
-import com.dev.Zerphyis.Adopet.services.ServiceAdocao;
+import com.dev.Zerphyis.Adopet.entidades.abrigo.Abrigo;
+import com.dev.Zerphyis.Adopet.entidades.abrigo.DadosAbrigo;
+import com.dev.Zerphyis.Adopet.services.ServiceAbrigo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/Adocao")
-public class ControllerAdocao {
+@RequestMapping("/Abrigo")
+public class ControllerAbrigo {
     @Autowired
-    private ServiceAdocao adocaoService;
+    private ServiceAbrigo adocaoService;
 
 
     @PostMapping
-    public ResponseEntity<Adocao> adicionarAdocao(@RequestBody DadosAdocao dados) {
-        Adocao adocao = adocaoService.adicionarAdocao(dados);
-        return ResponseEntity.ok(adocao);
+    public ResponseEntity<Abrigo> adicionarAdocao(@RequestBody DadosAbrigo dados) {
+        Abrigo abrigo = adocaoService.adicionarAdocao(dados);
+        return ResponseEntity.ok(abrigo);
     }
 
 
     @GetMapping
-    public ResponseEntity<List<Adocao>> listarAdocoes() {
-        List<Adocao> adocoes = adocaoService.listarAdocoes();
+    public ResponseEntity<List<Abrigo>> listarAdocoes() {
+        List<Abrigo> adocoes = adocaoService.listarAdocoes();
         return ResponseEntity.ok(adocoes);
     }
 
@@ -35,10 +34,10 @@ public class ControllerAdocao {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Adocao> atualizarAdocao(@PathVariable UUID id, @RequestBody DadosAdocao dados) {
+    public ResponseEntity<Abrigo> atualizarAdocao(@PathVariable UUID id, @RequestBody DadosAbrigo dados) {
         try {
-            Adocao adocaoAtualizada = adocaoService.atualizarAdocao(id, dados);
-            return ResponseEntity.ok(adocaoAtualizada);
+            Abrigo abrigoAtualizada = adocaoService.atualizarAdocao(id, dados);
+            return ResponseEntity.ok(abrigoAtualizada);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }

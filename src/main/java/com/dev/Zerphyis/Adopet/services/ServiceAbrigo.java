@@ -1,10 +1,10 @@
 package com.dev.Zerphyis.Adopet.services;
 
-import com.dev.Zerphyis.Adopet.entidades.cartelaAdocao.Adocao;
-import com.dev.Zerphyis.Adopet.entidades.cartelaAdocao.RepositoryDadosAdocao;
-import com.dev.Zerphyis.Adopet.entidades.dtos.DadosAdocao;
-import com.dev.Zerphyis.Adopet.entidades.pets.RepositoryAnimal;
-import com.dev.Zerphyis.Adopet.entidades.tutores.RepositoryTutores;
+import com.dev.Zerphyis.Adopet.entidades.abrigo.Abrigo;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAbrigo;
+import com.dev.Zerphyis.Adopet.entidades.abrigo.DadosAbrigo;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAnimal;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryTutores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class ServiceAdocao {
+public class ServiceAbrigo {
     @Autowired
-    private RepositoryDadosAdocao adocaoRepository;
+    private RepositoryAbrigo adocaoRepository;
 
     @Autowired
     private RepositoryAnimal petRepository;
@@ -23,7 +23,7 @@ public class ServiceAdocao {
     @Autowired
     private RepositoryTutores tutorRepository;
 
-    public Adocao adicionarAdocao(DadosAdocao dados) {
+    public Abrigo adicionarAdocao(DadosAbrigo dados) {
 
         var pet = petRepository.findById(dados.idPet())
                 .orElseThrow(() -> new IllegalArgumentException("Pet não encontrado para o ID fornecido."));
@@ -42,27 +42,27 @@ public class ServiceAdocao {
         petRepository.save(pet);
 
 
-        Adocao adocao = new Adocao(dados);
-        return adocaoRepository.save(adocao);
+        Abrigo abrigo = new Abrigo(dados);
+        return adocaoRepository.save(abrigo);
     }
 
-    public List<Adocao> listarAdocoes() {
+    public List<Abrigo> listarAdocoes() {
         return adocaoRepository.findAll();
     }
 
-    public Adocao atualizarAdocao(UUID id, DadosAdocao dados) {
-        Optional<Adocao> adocaoOptional = adocaoRepository.findById(id);
+    public Abrigo atualizarAdocao(UUID id, DadosAbrigo dados) {
+        Optional<Abrigo> adocaoOptional = adocaoRepository.findById(id);
 
         if (adocaoOptional.isPresent()) {
-            Adocao adocao = adocaoOptional.get();
+            Abrigo abrigo = adocaoOptional.get();
 
-            // Atualiza os dados
-            adocao.setNome(dados.nome());
-            adocao.setTelefone(dados.telefone());
-            adocao.setIdPet(dados.idPet());
-            adocao.setIdTutor(dados.idTutor());
 
-            return adocaoRepository.save(adocao);
+            abrigo.setNome(dados.nome());
+            abrigo.setTelefone(dados.telefone());
+            abrigo.setIdPet(dados.idPet());
+            abrigo.setIdTutor(dados.idTutor());
+
+            return adocaoRepository.save(abrigo);
         } else {
             throw new IllegalArgumentException("Adoção não encontrada para o ID fornecido.");
         }
