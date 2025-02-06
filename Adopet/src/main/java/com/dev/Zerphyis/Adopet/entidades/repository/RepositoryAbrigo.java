@@ -1,0 +1,11 @@
+package com.dev.Zerphyis.Adopet.entidades.repository;
+
+import com.dev.Zerphyis.Adopet.entidades.abrigo.Abrigo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface RepositoryAbrigo extends JpaRepository<Abrigo, UUID> {
+}
