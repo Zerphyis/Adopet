@@ -6,6 +6,7 @@ import com.dev.Zerphyis.Adopet.entidades.tutores.Tutores;
 import com.dev.Zerphyis.Adopet.services.ServiceTutores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,6 @@ public class ControllerTutores {
     public ResponseEntity<List<Tutores>> listarTodos() {
         return ResponseEntity.ok(service.listarTodos());
     }
-
 
 
     @PostMapping
