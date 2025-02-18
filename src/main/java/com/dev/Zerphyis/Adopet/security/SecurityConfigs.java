@@ -14,36 +14,34 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigs {
-        @Autowired
-        SecurityFilter securityFilter;
+    @Autowired
+    SecurityFilter securityFilter;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-            return httpSecurity
-                    .csrf(csrf -> csrf.disable())
-                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                    .authorizeHttpRequests(authorize -> authorize
-                            .requestMatchers(HttpMethod.POST, "/login/auth").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/login/registrar").permitAll()
-                            .requestMatchers("/Tutores/**").hasRole("ADMIN")
-                            .anyRequest().authenticated()
-                    )
-                    .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                    .build();
-        }
-
-        @Bean
-        public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-            return authenticationConfiguration.getAuthenticationManager();
-        }
-
-        @Bean
-        public PasswordEncoder passwordEncoder(){
-            return new BCryptPasswordEncoder();
-        }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST, "/login/auth").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login/registrar").permitAll()
+                        .requestMatchers("/Tutores/**").hasAuthority("GERENTE")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+}
