@@ -1,16 +1,14 @@
 package com.dev.Zerphyis.Adopet.entidades.abrigo;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_Adocao")
+@Table(name = "tb_abrigo")
 public class Abrigo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,24 +17,24 @@ public class Abrigo {
     private String nome;
     @NotBlank
     private String telefone;
-    @FutureOrPresent
+
     private LocalDateTime dataAdocao;
-    @NotEmpty
+    @NotNull
     private UUID idPet;
     @NotNull
     private Long idTutor;
 
-public Abrigo(){
+    public Abrigo(){
 
-}
-public Abrigo(DadosAbrigo dados){
-    this.nome= dados.nome();
-    this.telefone= dados.telefone();
-    this.dataAdocao=LocalDateTime.now();
-    this.idPet=dados.idPet();
-    this.idTutor= dados.idTutor();
+    }
+    public Abrigo(DadosAbrigo dados){
+        this.nome= dados.nome();
+        this.telefone= dados.telefone();
+        this.dataAdocao=LocalDateTime.now();
+        this.idPet=dados.idPet();
+        this.idTutor= dados.idTutor();
 
-}
+    }
     public UUID getId() {
         return id;
     }
