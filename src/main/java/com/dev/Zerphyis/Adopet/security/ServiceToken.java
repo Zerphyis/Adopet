@@ -23,6 +23,7 @@ public class ServiceToken {
             String token = JWT.create()
                     .withIssuer("Adopet")
                     .withSubject(usuario.getUsername())
+                    .withClaim("role", usuario.getTipoLogin().name())
                     .withExpiresAt(genExpirationDate())
                     .sign(algoritimo);
             return token;
