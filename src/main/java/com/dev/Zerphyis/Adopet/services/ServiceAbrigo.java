@@ -1,8 +1,8 @@
 package com.dev.Zerphyis.Adopet.services;
 
 import com.dev.Zerphyis.Adopet.entidades.abrigo.Abrigo;
-import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAbrigo;
 import com.dev.Zerphyis.Adopet.entidades.abrigo.DadosAbrigo;
+import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAbrigo;
 import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryAnimal;
 import com.dev.Zerphyis.Adopet.entidades.repository.RepositoryTutores;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 @Service
 public class ServiceAbrigo {
     @Autowired
@@ -42,8 +41,8 @@ public class ServiceAbrigo {
         petRepository.save(pet);
 
 
-        Abrigo abrigo = new Abrigo(dados);
-        return adocaoRepository.save(abrigo);
+        Abrigo Novaadocao = new Abrigo(dados);
+        return adocaoRepository.save(Novaadocao);
     }
 
     public List<Abrigo> listarAdocoes() {
@@ -54,15 +53,15 @@ public class ServiceAbrigo {
         Optional<Abrigo> adocaoOptional = adocaoRepository.findById(id);
 
         if (adocaoOptional.isPresent()) {
-            Abrigo abrigo = adocaoOptional.get();
+            Abrigo adocao = adocaoOptional.get();
 
 
-            abrigo.setNome(dados.nome());
-            abrigo.setTelefone(dados.telefone());
-            abrigo.setIdPet(dados.idPet());
-            abrigo.setIdTutor(dados.idTutor());
+            adocao.setNome(dados.nome());
+            adocao.setTelefone(dados.telefone());
+            adocao.setIdPet(dados.idPet());
+            adocao.setIdTutor(dados.idTutor());
 
-            return adocaoRepository.save(abrigo);
+            return adocaoRepository.save(adocao);
         } else {
             throw new IllegalArgumentException("Adoção não encontrada para o ID fornecido.");
         }
