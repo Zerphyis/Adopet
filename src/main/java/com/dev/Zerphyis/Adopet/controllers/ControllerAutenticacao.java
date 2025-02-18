@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,9 +35,9 @@ public class ControllerAutenticacao {
     @PostMapping("/auth")
     public ResponseEntity login(@RequestBody @Valid LogadoDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.nome(), data.senha());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
-
-        var token = tokenService.generateToken((Login) auth.getPrincipal());
+        var auth = authenticationManager.authenticate(usernamePassword);
+        var user = (Login) auth.getPrincipal();
+        var token = tokenService.generateToken(user);
 
         return ResponseEntity.ok(new RespostaToken(token));
     }
@@ -53,10 +54,7 @@ public class ControllerAutenticacao {
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
-
-
         Login novoUsuario = new Login(data.nome(), encryptedPassword,data.tipoLogin());
-
         this.repositoryLogin.save(novoUsuario);
 
 
