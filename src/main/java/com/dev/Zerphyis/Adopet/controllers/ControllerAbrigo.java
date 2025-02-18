@@ -9,20 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-
 @RestController
-@RequestMapping("/Abrigo")
+@RequestMapping("Abrigo")
 public class ControllerAbrigo {
     @Autowired
     private ServiceAbrigo adocaoService;
 
 
-    @PostMapping
-    public ResponseEntity<Abrigo> adicionarAdocao(@RequestBody DadosAbrigo dados) {
-        Abrigo abrigo = adocaoService.adicionarAdocao(dados);
-        return ResponseEntity.ok(abrigo);
-    }
 
+    @PostMapping("/adicionar")
+    public ResponseEntity<Abrigo> adicionarAdocao(@RequestBody DadosAbrigo dados) {
+        Abrigo adocao = adocaoService.adicionarAdocao(dados);
+        return ResponseEntity.ok(adocao);
+    }
 
     @GetMapping
     public ResponseEntity<List<Abrigo>> listarAdocoes() {
@@ -32,17 +31,15 @@ public class ControllerAbrigo {
 
 
 
-
     @PutMapping("/{id}")
     public ResponseEntity<Abrigo> atualizarAdocao(@PathVariable UUID id, @RequestBody DadosAbrigo dados) {
         try {
-            Abrigo abrigoAtualizada = adocaoService.atualizarAdocao(id, dados);
-            return ResponseEntity.ok(abrigoAtualizada);
+            Abrigo adocaoAtualizada = adocaoService.atualizarAdocao(id, dados);
+            return ResponseEntity.ok(adocaoAtualizada);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAdocao(@PathVariable UUID id) {
         try {
