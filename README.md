@@ -40,7 +40,13 @@ Adopet é uma aplicação web voltada para facilitar a adoção de animais, perm
 <br>
 POST /login/auth - Realiza o login do usuário e retorna o token JWT.
 <br>
+
+![Image](https://github.com/user-attachments/assets/dc7c739a-9b61-456f-91d2-8d9aaaa63e97)
+<br>
 POST /login/registrar - Registra um novo usuário (tutor).
+<br>
+
+![Image](https://github.com/user-attachments/assets/64c29468-b93c-44ef-89b0-ec8ff77a9b18)
 <br>
 
 ## Tutores
@@ -116,8 +122,20 @@ DELETE /Abrigo/{id} - Deleta um abrigo.
 ![Image](https://github.com/user-attachments/assets/406067e0-bb8c-4aeb-8c22-d4ef599f8054)
 <br>
 
-### Restrições de Acesso
-Tutores têm permissões limitadas a visualizar e adotar animais.
-Administradores podem gerenciar os tutores, animais e abrigos.
-A autenticação é feita via JWT, e a autorização é gerenciada pelas roles atribuídas aos usuários.
+## Restrições de Acesso
+
+### **Tutores**
+Tutores têm permissões limitadas:
+- Podem visualizar a lista de animais disponíveis para adoção.
+- Podem adotar animais.
+- Não têm acesso para gerenciar outros tutores, animais ou abrigos.
+
+### **Administradores**
+Administradores têm permissões completas:
+- Podem gerenciar tutores (criar, listar, editar e excluir).
+- Podem gerenciar animais (criar, listar, editar e excluir).
+- Podem gerenciar abrigos (criar, listar, editar e excluir).
+
+### **Autenticação e Autorização**
+A autenticação é feita via **JWT**, e a autorização é gerenciada pelas roles atribuídas aos usuários (Tutor ou Administrador).
 
